@@ -23,6 +23,7 @@ export const fetchLoadingComments = createAsyncThunk(
 )
 
 export const redditPageSlice = createSlice({
+    name: 'redditPage',
     initialState: {
         posts: [],
         comments: [],
