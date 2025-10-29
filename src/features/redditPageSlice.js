@@ -5,7 +5,7 @@ import { createSlice } from "@reduxjs/toolkit";
 export const fetchLoadingPosts = createAsyncThunk(
     'posts/fetchLoadingPosts',
     async(subreddit, thunkAPI) => {
-        const redditAPI = `https://www.reddit.com/r/${subreddit}.json`;
+        const redditAPI = `/reddit/r/${subreddit}.json`;
         const response = await fetch(redditAPI);
         const json = await response.json();
         return json.data.children;
