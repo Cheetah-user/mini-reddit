@@ -2,35 +2,41 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { createSlice } from "@reduxjs/toolkit";
 
 
-export const fetchLoadingPosts = createAsyncThunk(
-    'posts/fetchLoadingPosts',
+ const fetchLoadingPosts = createAsyncThunk(
+    'feed/fetchLoadingPosts',
     async(subreddit, thunkAPI) => {
-        const redditAPI = `/reddit/r/${subreddit}.json`;
-        const response = await fetch(redditAPI);
-        const json = await response.json();
-        return json.data.children;
+        const response = await fetch(`/api/reddit/${subreddit}`);
+        const data = await response.json();
+        console.log(data);
+        if(!data.data || !data.data.children){
+            return [];
+        }
+        const fetched = data.data.children;
+        return fetched;
     }
 )
 
-export const fetchLoadingComments = createAsyncThunk(
-    'comments/fetchLoadingComments',
+ const fetchLoadingComments = createAsyncThunk(
+    'feed/fetchLoadingComments',
     async({subreddit, postId}, thunkAPI) => {
-        const redditAPI = `https://www.reddit.com/r/${subreddit}/comments/${postId}.json`;
-        const response = await fetch(redditAPI);
-        const json = await response.json();
-        return json[1].data.children;
+        const response = await fetch(`/api/reddit/comments/${subreddit}/${postId}`);
+        const data = await response.json();
+        console.log(data);
+        const fetched = data[1]?.data?.children || [];
+        console.log('children:', data[1]?.data?.children);
+        return {postId, comments: fetched};
     }
 )
 
 export const redditPageSlice = createSlice({
-    name: 'redditPage',
+    name: 'feed',
     initialState: {
         posts: [],
-        comments: [],
+        comments: {},
         loadposts: false,
-        errorposts: false,
-        loadcomment: false,
-        errorcomment: false
+        errorposts: null,
+        loadcomment: {},
+        errorcomment: {}
     },
     reducers: {
 
@@ -40,33 +46,37 @@ export const redditPageSlice = createSlice({
      builder
        .addCase(fetchLoadingPosts.pending, (state, action) =>{
         state.loadposts = true;
-        state.errorposts = false;
+        state.errorposts = null;
       })
        .addCase(fetchLoadingPosts.fulfilled, (state, action) => {
         state.posts = action.payload;
         state.loadposts = false;
-        state.errorposts = false;
+        state.errorposts = null;
       })
       .addCase(fetchLoadingPosts.rejected, (state, action) => {
         state.loadposts = false;
-        state.errorposts = true;
+        state.errorposts = action.error.message;
       })
 
       //extra reducers for comments
       .addCase(fetchLoadingComments.pending, (state, action) => {
+        const postId = action.meta.arg.postId;
         state.loadcomment = true;
-        state.errorcomment = false;
+        state.errorcomment = null;
       })
       .addCase(fetchLoadingComments.fulfilled, (state, action) => {
-        state.comments = action.payload;
+        const {postId, comments} = action.payload;
+        state.comments[postId] = comments;
         state.loadcomment = false;
-        state.errorcomment = false;
+        state.errorcomment = null;
       })
       .addCase(fetchLoadingComments.rejected, (state, action) => {
-        state.loadcomment = false;
-        state.errorcomment = true;
+        const postId = action.meta.arg.postId;
+        state.loadcomment[postId] = false;
+        state.errorcomment[postId] = action.error.message;
       })
     }
 })
 
 export default redditPageSlice.reducer;
+export {fetchLoadingComments, fetchLoadingPosts};

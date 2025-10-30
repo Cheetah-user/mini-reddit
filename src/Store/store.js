@@ -7,7 +7,7 @@ import  searchReducer  from "../features/searchSlice";
 const store  = configureStore({
     reducer: {
         redditSub: redditSubReducer,
-        redditPage: redditPageReducer,
+        feed: redditPageReducer,
         search: searchReducer
     }
 });
