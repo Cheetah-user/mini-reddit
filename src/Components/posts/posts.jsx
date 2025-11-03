@@ -7,8 +7,8 @@ import Post from "./post";
 
 const Posts = () => {
     const posts = useSelector((state) => state.feed.posts);
-    const isLoading = useSelector((state) => state.feed.isLoading);
-    const error = useSelector((state) => state.feed.error);
+    const isLoading = useSelector((state) => state.feed.loadpost);
+    const error = useSelector((state) => state.feed.errorposts);
     const dispatch = useDispatch();
 
     useEffect(() => {
