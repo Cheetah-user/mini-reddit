@@ -2,7 +2,7 @@ import express from 'express';
 import fetch from 'node-fetch';
 
 const app = express();
-const PORT = 5000;
+const PORT = 5001;
 
 
 function delay(ms) {
@@ -45,6 +45,11 @@ app.get('/api/reddit/comments/:subreddit/:postId', async (req, res) => {
     res.status(500).json({ error: 'Failed to fetch comments from Reddit' });
   }
 });
+
+app.get('/', (req, res) => {
+  res.send('Server is running!');
+});
+
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
