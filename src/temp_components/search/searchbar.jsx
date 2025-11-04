@@ -9,7 +9,9 @@ import { useState } from "react";
     
     const handleSubmit = (e) => {
         e.preventDefault();
+        console.log('dispatch search:', search);
         dispatch(fetchSearchResults(search));
+        console.log(search);
     }
     
     return (
@@ -24,5 +26,6 @@ import { useState } from "react";
       </form>
     )
 }
+
 
 export default SearchBar;

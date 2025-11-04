@@ -3,7 +3,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 const fetchSearchResults = createAsyncThunk(
     'search/fetchSearchResults',
     async(subreddit, thunkAPI) => {
-       const searchReddit = `https://www.reddit.com/search.json?q=${subreddit}`;
+       const searchReddit = `http://www.reddit.com/search.json?q=${subreddit}`;
        const response = await fetch(searchReddit);
        const json = await response.json();
        return json.data.children;

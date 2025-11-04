@@ -8,7 +8,7 @@ const store  = configureStore({
     reducer: {
         redditSub: redditSubReducer,
         feed: redditPageReducer,
-        search: searchReducer
+        redditSearch: searchReducer
     }
 });
 
