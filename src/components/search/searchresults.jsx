@@ -3,7 +3,7 @@ import SearchBar from "./searchbar";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { fetchLoadingPosts } from "../../features/redditPageSlice";
-import Post from "components/posts/post";
+import Post from "../posts/post";
 
 
 const SearchResult = () => {
