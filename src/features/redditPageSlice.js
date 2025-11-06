@@ -7,7 +7,6 @@ import { createSlice } from "@reduxjs/toolkit";
     async(subreddit, thunkAPI) => {
         const response = await fetch(`/api/reddit/${subreddit}`);
         const data = await response.json();
-        console.log(data);
         if(!data.data || !data.data.children){
             return [];
         }
@@ -21,9 +20,7 @@ import { createSlice } from "@reduxjs/toolkit";
     async({subreddit, postId}, thunkAPI) => {
         const response = await fetch(`/api/reddit/comments/${subreddit}/${postId}`);
         const data = await response.json();
-        console.log(data);
-        const fetched = data[1]?.data?.children || [];
-        console.log('children:', data[1]?.data?.children);
+        const fetched = (data[1]?.data?.children || []).map(child => child.data);
         return {postId, comments: fetched};
     }
 )
@@ -61,14 +58,14 @@ export const redditPageSlice = createSlice({
       //extra reducers for comments
       .addCase(fetchLoadingComments.pending, (state, action) => {
         const postId = action.meta.arg.postId;
-        state.loadcomment = true;
-        state.errorcomment = null;
+        state.loadcomment[postId] = true;
+        state.errorcomment[postId] = null;
       })
       .addCase(fetchLoadingComments.fulfilled, (state, action) => {
         const {postId, comments} = action.payload;
         state.comments[postId] = comments;
-        state.loadcomment = false;
-        state.errorcomment = null;
+        state.loadcomment[postId]= false;
+        state.errorcomment[postId] = null;
       })
       .addCase(fetchLoadingComments.rejected, (state, action) => {
         const postId = action.meta.arg.postId;

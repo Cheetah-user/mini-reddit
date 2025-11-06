@@ -39,6 +39,11 @@ app.get('/api/reddit/comments/:subreddit/:postId', async (req, res) => {
     const response = await fetch(`https://www.reddit.com/r/${subreddit}/comments/${postId}.json`, {
       headers: { 'User-Agent': 'my-reddit-app/0.1 by myusername' }
     });
+    if(!response.ok){
+      const errorData = await response.json();
+      return
+      res.status(response.status).json(errorData);
+    }
     const data = await response.json();
     res.json(data);
   } catch (error) {
