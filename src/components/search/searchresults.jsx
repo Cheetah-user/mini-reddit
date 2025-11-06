@@ -9,7 +9,6 @@ import Post from "../posts/post";
 const SearchResult = () => {
     const results = useSelector((state) => 
         state.redditSearch.results);
-    console.log(results);
     const dispatch = useDispatch();
     const posts = useSelector((state) => state.feed.posts);
 

@@ -2,7 +2,6 @@ import { useState } from "react";
 import Comments from '../comments/comments'
 
 const Post = ({post}) => {
-    console.log(post);
     const title = post.title || "No title";
     const author = post.author || "Unknown";
     const upVote = post.ups ?? 0;
