@@ -13,7 +13,7 @@ export const fetchSubReddit = createAsyncThunk(
 const redditSubSlice = createSlice({
     name: 'redditSub',
     initialState: {
-        subreddit: [],
+        subreddits: [],
         isLoading: false,
         hasError: false
     },
@@ -27,7 +27,7 @@ const redditSubSlice = createSlice({
             state.hasError = false;
          })
          .addCase(fetchSubReddit.fulfilled, (state, action) => {
-            state.subreddit = action.payload;
+            state.subreddits = action.payload;
             state.isLoading = false;
             state.hasError = false;
          })

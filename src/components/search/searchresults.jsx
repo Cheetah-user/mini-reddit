@@ -6,15 +6,19 @@ import { fetchLoadingPosts } from "../../features/redditPageSlice";
 import Post from "../posts/post";
 
 
-const SearchResult = () => {
+const SearchResult = ({subreddit}) => {
     const results = useSelector((state) => 
         state.redditSearch.results);
     const dispatch = useDispatch();
     const posts = useSelector((state) => state.feed.posts);
 
     useEffect(() => {
+        if(subreddit){
+          dispatch(fetchLoadingPosts(subreddit))
+        }else{
         dispatch(fetchLoadingPosts("javascript"));
-    }, [dispatch]);
+        }
+    }, [dispatch, subreddit]);
 
     const displayPosts = results.length > 0 ? results : posts;
 
