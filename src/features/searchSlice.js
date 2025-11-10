@@ -18,7 +18,9 @@ const searchSlice = createSlice({
         hasError: false
     },
     reducers: {
-
+        clearResults: (state) => {
+         state.results = [];
+        }
     },
     extraReducers: (builder) => {
       builder
@@ -40,3 +42,4 @@ const searchSlice = createSlice({
 
 export {fetchSearchResults};
 export default searchSlice.reducer;
+export const {clearResults} = searchSlice.actions;

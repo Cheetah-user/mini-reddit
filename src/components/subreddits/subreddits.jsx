@@ -1,8 +1,7 @@
 import { fetchSubReddit } from "../../features/redditSubSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { useState } from "react";
-import Posts from "../posts/posts";
+import { clearResults } from "../../features/searchSlice";
 
 
 
@@ -34,8 +33,8 @@ const SubReddit = ({setSelectedSub}) => {
          <div 
          key={sub.data.id}
          onClick={() => { 
-            console.log("Clicked:", sub.data.display_name);
             setSelectedSub(sub.data.display_name);
+            dispatch(clearResults());
         }}
          >
            <img
