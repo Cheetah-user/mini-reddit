@@ -10,19 +10,25 @@ const Comments = ({ subreddit, postId}) => {
     const loadComment = useSelector((state) => state.feed.loadComment?.[postId]);
     const  errorComment= useSelector((state) => state.feed.errorComment?.[postId]);
 
-    console.log('comments for', postId, comments);
-    console.log('feed state:', useSelector((state) => state.feed));
     useEffect(() => {
         dispatch(fetchLoadingComments({subreddit, postId}));
     }, [dispatch, subreddit, postId]);
 
-    if (loadComment) return <div>Loading...</div>;  
-    if (errorComment) return <div>Error Loading Comments.</div>
+    if ((loadComment === undefined || loadComment) && comments.length === 0){ 
+        return <div>Loading comments...</div>;
+    }  
 
-    console.log('comments:', comments);
+    if (errorComment){ 
+        return <div>Error Loading Comments: {errorComment}</div>;
+    }
+
+    if(comments.length === 0){
+        return <div>No comments found.</div>;
+    }
+
+    
     return (
         <div>
-            {comments.length === 0 && <div>No comments found.</div>}
             {comments.map(comment => (
                 <div key={comment.id}>
                     <strong>{comment.author}</strong>
