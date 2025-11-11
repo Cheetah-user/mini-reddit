@@ -11,11 +11,9 @@ const SubReddit = ({setSelectedSub}) => {
     const isLoading = useSelector((state) => state.redditSub.isLoading);
     const hasError = useSelector((state) => state.redditSub.hasError);
 
-    console.log('SubReddit rendered', { subreddits, isLoading, hasError });
 
    useEffect(() => {
      dispatch(fetchSubReddit());
-     console.log('useEffect running');
    }, [dispatch]);
 
    if(isLoading){
