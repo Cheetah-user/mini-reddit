@@ -2,7 +2,7 @@ import { fetchSubReddit } from "../../features/redditSubSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { clearResults } from "../../features/searchSlice";
-
+import "./subreddit.css";
 
 
 const SubReddit = ({setSelectedSub}) => {
@@ -26,9 +26,11 @@ const SubReddit = ({setSelectedSub}) => {
 
   
    return(
-     <div>
+     <div className="subredditStyling">
+      <h2>SubReddits</h2>
        {subreddits.map(sub => (
          <div 
+         className="sub-spacing"
          key={sub.data.id}
          onClick={() => { 
             setSelectedSub(sub.data.display_name);
@@ -38,6 +40,7 @@ const SubReddit = ({setSelectedSub}) => {
            <img
             src={sub.data.icon_img || "https://www.redditstatic.com/icon.png"}
             alt={sub.data.display_name}
+            className="image-style"
            />
            {sub.data.display_name_prefixed}
          </div>

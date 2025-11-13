@@ -1,0 +1,15 @@
+.image-style{
+    width: 29px;
+    height: 29px;
+}
+
+.subredditStyling{
+    box-shadow: 5px 5px 12px lightgray;
+    margin: 36px;
+    grid-column: 3 / 4;
+    padding: 24px;
+}
+
+.sub-spacing{
+    padding-bottom: 9px;
+}

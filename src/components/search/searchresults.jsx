@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { fetchLoadingPosts } from "../../features/redditPageSlice";
 import Post from "../posts/post";
+import "../posts/posts.css";
 
 
 const SearchResult = ({subreddit}) => {
@@ -23,12 +24,16 @@ const SearchResult = ({subreddit}) => {
     const displayPosts = results.length > 0 ? results : posts;
 
     return (
+        <>
+        <SearchBar/>
         <div>
-            <SearchBar/>
+            <div className="postsContainer">
             {displayPosts.map(post => (
                 <Post key={post.data.id} post={post.data}/>
             ))}
+            </div>
         </div>
+        </>
     );
 };
 

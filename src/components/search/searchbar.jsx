@@ -1,6 +1,7 @@
 import { fetchSearchResults } from "../../features/searchSlice";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
+import "./search.css";
 
 
  const SearchBar = () => {
@@ -9,12 +10,12 @@ import { useState } from "react";
     
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log('dispatch search:', search);
         dispatch(fetchSearchResults(search));
-        console.log(search);
     }
     
     return (
+      <header className="HeaderStyles">
+       <h1 className="header-title">RedditMinimal</h1>
         <form onSubmit={handleSubmit}>
         <input 
           type="text"
@@ -22,8 +23,9 @@ import { useState } from "react";
           onChange={e => setSearch(e.target.value)}
           placeholder="Search reddit"
         />
-        <button type="submit">Search</button>
+        <button type="submit" className="SearchButton">Search</button>
       </form>
+      </header>
     )
 }
 

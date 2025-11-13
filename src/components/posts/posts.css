@@ -1,0 +1,22 @@
+main {
+    box-shadow: 5px 5px 12px lightgray;
+    margin-top: 30px;
+    padding-top: 3px;
+    padding-bottom: 6px;
+    margin-left: 20px;
+    margin-bottom: 9px;
+}
+
+.postDetails{
+    border-top: 1px solid lightgray;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 9px;
+    padding-right: 9px;
+    font-size: 0.8em;
+}
+
+.postsContainer{
+    display: grid;
+}

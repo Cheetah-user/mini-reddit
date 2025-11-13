@@ -1,0 +1,34 @@
+.HeaderStyles{
+    font-size: large;
+}
+
+header{
+   display: grid; 
+   grid-column: 1 / 4;
+   grid-template-columns: 1fr 1fr 1fr;
+   align-content: center;
+   box-shadow: 0 5px 12px rgb(208, 206, 211);
+   width: 100%;
+   box-sizing: border-box;
+   padding: 0 20px;
+}
+
+.SearchButton{
+    margin-left: 5px;
+    font-size: medium;
+    margin-top: 6px;
+    padding: 6px;
+}
+
+button{
+    background-color: #f9f9f9;
+    
+}
+
+.header-title{
+    display: flex;
+}
+
+form{
+    margin: 9px;
+}

@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { fetchLoadingComments } from "../../features/redditPageSlice";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
+import "./comments.css";
 
 const Comments = ({ subreddit, postId}) => {
     const dispatch = useDispatch();
@@ -30,8 +31,8 @@ const Comments = ({ subreddit, postId}) => {
     return (
         <div>
             {comments.map(comment => (
-                <div key={comment.id}>
-                    <strong>{comment.author}</strong>
+                <div className= "Comment-styling" key={comment.id}>
+                    <strong>{comment.author}:</strong>
                     {comment.body}</div>
             ))}
         </div>

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Comments from '../comments/comments'
+import './posts.css'
 
 const Post = ({post}) => {
     const title = post.title || "No title";
@@ -34,19 +35,21 @@ const Post = ({post}) => {
     }
   
       return (
-          <div>
+          <main>
             <h2>{title}</h2>
-            <p>By {author}</p>
             {imageUrl && <img src={imageUrl} alt={title}/>}
+            <div className="postDetails">
+            <p>By {author}</p>
             <p>UpVotes: {upVote} | DownVotes: {downVote}</p>
             <p>{timeSincePosted}</p>
             <button onClick={() => setShowComments(!showComments)}>
               {showComments ? "Hide Comments" : "Show Comments"}
             </button>
+            </div>
             {showComments && (
               <Comments subreddit={post.subreddit} postId={post.id} />
             )}
-          </div>
+          </main>
       )
   }
   
