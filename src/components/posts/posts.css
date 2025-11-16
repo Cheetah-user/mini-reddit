@@ -5,6 +5,7 @@ main {
     padding-bottom: 6px;
     margin-left: 20px;
     margin-bottom: 9px;
+    word-break: break-word;
 }
 
 .postDetails{
@@ -19,4 +20,8 @@ main {
 
 .postsContainer{
     display: grid;
+}
+
+.grid-div{
+    grid-column: 1 / 3;
 }

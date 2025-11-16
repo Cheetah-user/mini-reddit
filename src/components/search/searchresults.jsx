@@ -26,7 +26,7 @@ const SearchResult = ({subreddit}) => {
     return (
         <>
         <SearchBar/>
-        <div>
+        <div className="grid-div">
             <div className="postsContainer">
             {displayPosts.map(post => (
                 <Post key={post.data.id} post={post.data}/>
