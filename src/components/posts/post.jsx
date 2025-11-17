@@ -12,11 +12,20 @@ const Post = ({post}) => {
     const createdUtc = post.created_utc ?? 0;
     const [showComments, setShowComments] = useState(false);
   
-    if (post.thumbnail && post.thumbnail.startsWith('http')) {
-      imageUrl = post.thumbnail;
-    } else if (post.url && (post.url.endsWith('.jpg') || post.url.endsWith('.png') || post.url.endsWith('.gif'))) {
+    if(
+      post.preview &&
+      post.preview.images &&
+      post.preview.images[0] &&
+      post.preview.images[0].source &&
+      post.preview.images[0].source.url
+    ){
+      imageUrl = post.preview.images[0].source.url.replace(/&amp;/g, '&');
+    }else if (post.url && (post.url.endsWith('.jpg') || post.url.endsWith('png')|| post.url.endsWith('.gif'))){
       imageUrl = post.url;
+    }else if (post.thumbnail && post.thumbnail.startsWith('http')){
+      imageUrl = post.thumbnail;
     }
+
   
     const now = Math.floor(Date.now() / 1000);
     const secondsAgo = now - createdUtc;

@@ -13,3 +13,14 @@
 .sub-spacing{
     padding-bottom: 9px;
 }
+
+
+@media only screen and (min-width: 320px) and (max-width: 425px){
+    .subredditStyling{
+        grid-column: 1 / 4;
+    }
+
+    .sub-spacing{
+        font-size: small;
+    }
+}

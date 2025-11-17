@@ -32,3 +32,19 @@ button{
 form{
     margin: 9px;
 }
+
+@media only screen and (max-width: 425px) {
+    .header-title{
+        align-self: center;
+    }
+
+    header{
+        padding: 0 5px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .SearchButton{
+        font-size: small;
+    }
+}
