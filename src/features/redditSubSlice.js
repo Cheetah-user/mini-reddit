@@ -3,7 +3,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 export const fetchSubReddit = createAsyncThunk(
    'subreddit/fetchSubReddit',
    async(_, thunkAPI) => {
-     const redditAPI = `https://www.reddit.com/subreddits/popular.json`;
+     const redditAPI = `https://mini-reddit-a5du.onrender.com/api/reddit/subreddits`;
      const response = await fetch(redditAPI);
      const json = await response.json();
      return json.data.children;
