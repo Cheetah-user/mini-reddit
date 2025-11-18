@@ -59,9 +59,7 @@ app.get('/', (req, res) => {
 
 app.get('/api/reddit/subreddits', async (req, res) =>{
   try{
-    const response = await fetch('https://www.reddit.com/subreddits/popular.json', {
-      headers: { 'User-Agent': 'my-reddit-app/0.1 by myusername' }
-    });
+    const response = await fetch('https://www.reddit.com/subreddits/popular.json');
    if(!response.ok) {
     return res.status(500).json({ error: 'Reddit API error '});
    }
