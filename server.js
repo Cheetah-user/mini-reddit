@@ -61,11 +61,13 @@ app.get('/api/reddit/subreddits', async (req, res) =>{
   try{
     const response = await fetch('https://www.reddit.com/subreddits/popular.json');
    if(!response.ok) {
-    return res.status(500).json({ error: 'Reddit API error '});
+    console.error('Reddit response not ok:', response.status, response.statusText);
+    return res.status(500).json({ error: `Reddit API error: ${response.status}${response.statusText}`});
    }
    const data = await response.json();
    res.json(data);
   }catch(error){
+    console.error('Fetch error:', error);
     res.status(500).json({ error: 'Failed to fetch subreddits from Reddit' });
   }
 });
