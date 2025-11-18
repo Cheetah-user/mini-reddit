@@ -5,7 +5,7 @@ import { createSlice } from "@reduxjs/toolkit";
  const fetchLoadingPosts = createAsyncThunk(
     'feed/fetchLoadingPosts',
     async(subreddit, thunkAPI) => {
-        const response = await fetch(`/api/reddit/${subreddit}`);
+        const response = await fetch(`https://mini-reddit-a5du.onrender.com/api/reddit/${subreddit}`);
         const data = await response.json();
         if(!data.data || !data.data.children){
             return [];
@@ -18,7 +18,7 @@ import { createSlice } from "@reduxjs/toolkit";
  const fetchLoadingComments = createAsyncThunk(
     'feed/fetchLoadingComments',
     async({subreddit, postId}, thunkAPI) => {
-        const response = await fetch(`/api/reddit/comments/${subreddit}/${postId}`);
+        const response = await fetch(`https://mini-reddit-a5du.onrender.com/api/reddit/comments/${subreddit}/${postId}`);
         const data = await response.json();
         const fetched = (data[1]?.data?.children || []).map(child => child.data);
         return {postId, comments: fetched};
