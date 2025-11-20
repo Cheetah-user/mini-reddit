@@ -1,6 +1,7 @@
 import express from 'express';
 import fetch from 'node-fetch';
 import cors from 'cors';
+import { Children } from 'react';
 
 const app = express();
 app.use(cors({ origin: 'http://localhost:5173' }));
@@ -58,20 +59,17 @@ app.get('/', (req, res) => {
 });
 
 app.get('/api/reddit/subreddits', async (req, res) =>{
-  try{
-    const response = await fetch('https://www.reddit.com/subreddits/default.json', {
-      headers: { 'User-Agent': 'my-reddit-app/0.1 by myusername' }
-    });
-   if(!response.ok) {
-    console.error('Reddit response not ok:', response.status, response.statusText);
-    return res.status(500).json({ error: `Reddit API error: ${response.status}${response.statusText}`});
-   }
-   const data = await response.json();
-   res.json(data);
-  }catch(error){
-    console.error('Fetch error:', error);
-    res.status(500).json({ error: 'Failed to fetch subreddits from Reddit' });
-  }
+  res.json({
+    data: {
+      children: [
+    {data: { id: '1', display_name: 'Home', display_name_prefixed: 'r/Home', icon_img: ''}},
+    {data: { id: '2', display_name: 'AskReddit', display_name_prefixed: 'r/AskReddit', icon_img: ''}},
+    {data: { id: '3', display_name: 'pics', display_name_prefixed: 'r/pics', icon_img: ''}},
+    {data: { id: '4', display_name: 'NoStupidQuestions', display_name_prefixed: 'r/NoStupidQuestions', icon_img: ''}},
+    {data: { id: '5', display_name: 'gaming', display_name_prefixed: 'r/gaming', icon_img: ''}}
+      ]
+    }
+  })
 });
 
 app.listen(PORT, () => {
