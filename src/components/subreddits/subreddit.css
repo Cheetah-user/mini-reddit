@@ -24,3 +24,9 @@
         font-size: small;
     }
 }
+
+@media only screen and (max-width: 768px) {
+    .subredditStyling{
+        grid-column: 1 / 4;
+    }
+}
