@@ -12,6 +12,19 @@ function delay(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
+app.get('/api/reddit/subreddits', async (req, res) =>{
+  res.json({
+    data: {
+      children: [
+    {data: { id: '1', display_name: 'Home', display_name_prefixed: 'r/Home', icon_img: ''}},
+    {data: { id: '2', display_name: 'AskReddit', display_name_prefixed: 'r/AskReddit', icon_img: ''}},
+    {data: { id: '3', display_name: 'pics', display_name_prefixed: 'r/pics', icon_img: ''}},
+    {data: { id: '4', display_name: 'NoStupidQuestions', display_name_prefixed: 'r/NoStupidQuestions', icon_img: ''}},
+    {data: { id: '5', display_name: 'gaming', display_name_prefixed: 'r/gaming', icon_img: ''}}
+      ]
+    }
+  })
+});
 
 app.get('/api/reddit/:subreddit', async (req, res) => {
   const { subreddit } = req.params;
@@ -56,20 +69,6 @@ app.get('/api/reddit/comments/:subreddit/:postId', async (req, res) => {
 
 app.get('/', (req, res) => {
   res.send('Server is running!');
-});
-
-app.get('/api/reddit/subreddits', async (req, res) =>{
-  res.json({
-    data: {
-      children: [
-    {data: { id: '1', display_name: 'Home', display_name_prefixed: 'r/Home', icon_img: ''}},
-    {data: { id: '2', display_name: 'AskReddit', display_name_prefixed: 'r/AskReddit', icon_img: ''}},
-    {data: { id: '3', display_name: 'pics', display_name_prefixed: 'r/pics', icon_img: ''}},
-    {data: { id: '4', display_name: 'NoStupidQuestions', display_name_prefixed: 'r/NoStupidQuestions', icon_img: ''}},
-    {data: { id: '5', display_name: 'gaming', display_name_prefixed: 'r/gaming', icon_img: ''}}
-      ]
-    }
-  })
 });
 
 app.listen(PORT, () => {
