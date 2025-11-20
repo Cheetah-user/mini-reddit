@@ -4,7 +4,7 @@ import cors from 'cors';
 import { Children } from 'react';
 
 const app = express();
-app.use(cors({ origin: 'http://localhost:5173' }));
+app.use(cors({ origin: ['http://localhost:5173', 'https://simply-mini-reddit.netlify.app']}));
 const PORT = 5001;
 
 
