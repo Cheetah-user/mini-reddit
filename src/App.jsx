@@ -1,6 +1,6 @@
 import SearchResult from './components/search/searchresults'
 import './App.css'
-import SubReddit from './Components/subreddits/subreddits'
+import SubReddit from './components/subreddits/subreddits'
 import { useState } from 'react'
 
 function App() {
@@ -13,4 +13,4 @@ function App() {
   )
 }
 
-export default App
+export default App;
